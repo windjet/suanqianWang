@@ -1,0 +1,15 @@
+.head {
+	position: fixed;
+	height: 48px;
+	background-color: rgba(0, 110, 200, 0.8);
+	top: 0;
+	z-index: 99;
+	width: 100%;
+	h1 {
+		font-size: 18px;
+		color: #ffffff;
+		font-weight: normal;
+		text-align: center;
+		line-height: 48px;
+	}
+}
