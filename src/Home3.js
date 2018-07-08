@@ -1,16 +1,16 @@
 import React from 'react';
 
-class Home2 extends React.Component {
+class Home3 extends React.Component {
 
 
   render() {
     console.log(this.props.history);
     return (
-      <div className="Home2"  onClick={() => console.log(222222)}>
-        home22222
+      <div className="Home3"  onClick={() => console.log(222222)}>
+        home33333
       </div>
     );
   }
 }
 
-export default Home2;
+export default Home3;

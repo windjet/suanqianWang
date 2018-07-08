@@ -1,12 +1,16 @@
 import React from 'react';
 import Route from 'react-router-dom/Route';
 import Switch from 'react-router-dom/Switch';
-import Home from './Home';
 import './App.css';
+import routes from './core/routes';
 
 const App = () => (
   <Switch>
-    <Route exact path="/" component={Home} />
+	  {
+		  routes.map((route, i) => (
+			  <Route key={i} {...route} />
+		  ))
+	  }
   </Switch>
 );
 

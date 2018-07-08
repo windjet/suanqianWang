@@ -1,5 +1,5 @@
-import React, {Fragment, Component} from 'react';
-import './index.scss'
+import React, {Component} from 'react';
+//import './index.scss'
 import cn from 'classnames';
 
 
