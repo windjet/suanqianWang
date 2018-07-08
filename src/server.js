@@ -3,10 +3,13 @@ import React from 'react';
 import { StaticRouter } from 'react-router-dom';
 import express from 'express';
 import { renderToString } from 'react-dom/server';
+import DocumentTitle from 'react-document-title'
+import compression from 'compression';
 
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
 const server = express();
+server.use(compression());
 server
   .disable('x-powered-by')
   .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
@@ -17,8 +20,9 @@ server
         <App />
       </StaticRouter>
     );
+	  const _title = DocumentTitle.rewind();
 
-    if (context.url) {
+	  if (context.url) {
       res.redirect(context.url);
     } else {
       res.status(200).send(
@@ -27,7 +31,7 @@ server
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta charset="utf-8" />
-        <title>Welcome to Razzle</title>
+        <title>${_title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         ${
           assets.client.css
