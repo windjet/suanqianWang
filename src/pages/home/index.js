@@ -6,7 +6,7 @@ export default class Home extends Component {
   static displayName = 'Home';
 
   goYearEndBonus = () => {
-    this.props.history.go('/yearEndBonus')
+    this.props.history.push('/home2')
   };
 	goBack = () => {
 		console.log(this.props.history)
@@ -14,7 +14,7 @@ export default class Home extends Component {
 
   render() {
     return (
-	    <DocumentTitle title='Homesssss'>
+	    <DocumentTitle title='算钱网'>
 	      <div className='home-page'>
 	        homePage
 		      <div onClick={this.goBack}>test back</div>
