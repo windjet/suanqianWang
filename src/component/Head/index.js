@@ -5,8 +5,8 @@ import './index.scss';
 export default class Head extends Component {
   static displayName = 'Head';
 
-	goBack = () => {
-	  console.log(this.props.history)
+  goBack = () => {
+    console.log(this.props.history)
   };
 
   render() {
