@@ -15,11 +15,16 @@ const routes = [
     exact: true,
     component: YearEndBonus
   },
-  {
-    path: '/fiveInsuranceOneFund',
-    exact: true,
-    component: FiveInsuranceOneFund
-  }
+	{
+		path: '/fiveInsuranceOneFund',
+		exact: true,
+		component: FiveInsuranceOneFund
+	},
+	{
+		path: '/fiveInsuranceOneFund/:city',
+		exact: true,
+		component: FiveInsuranceOneFund
+	}
 ];
 
 // const extendRoutes = routes.map(({component, ...others}) => {
