@@ -8,13 +8,13 @@
 			padding: 10px 0;
 			box-sizing: border-box;
 			border: 1px solid #ffffff;
-			img {
-				display: block;
+			.icon {
 				margin: 0 auto 8px;
 				width: 36px;
 				height: 36px;
 				border-radius: 50%;
-				background-color: #eeeeee;
+				background: url("../../asset/images/icon_yearEndBonus.png") no-repeat #eee;
+				background-size: cover;
 			}
 			p {
 				text-align: center;

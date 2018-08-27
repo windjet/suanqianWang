@@ -81,25 +81,25 @@ export default class YearEndBonus extends Component {
   render() {
     return (
       <DocumentTitle title='年终奖计算器 - 算钱网'>
-        <div className={'page-year-end-bouns'}>
-          <div className={'content'}>
+        <div className='page-year-end-bouns'>
+          <div className='content'>
             <h2>年终奖税后计算器</h2>
-            <div className={'form-col current'}>
+            <div className='form-col current'>
               <label>税前收入</label>
               <input type="number" value={this.state.preTax} onChange={this.handleChange} placeholder='请先输入年终奖金额'/>
             </div>
-            <div className={'actions'}>
+            <div className='actions'>
               <button className={cn('submit-btn', !this.state.preTax && 'disabled')}
                       onClick={() => this.nianzhongjiangFormula(this.state.preTax)}>计算
               </button>
             </div>
-            <div className={'form-col'}>
+            <div className='form-col'>
               <label>税后收入</label>
               <input type='number' disabled value={this.state.preTax && this.state.afterTax} placeholder=''/>
             </div>
           </div>
           {this.state.preTax && this.state.afterTax &&
-          <div className={'tax-detail'}>
+          <div className='tax-detail'>
             <h6>纳税详情</h6>
             <p>纳税金额: <strong>{this.state.payTax}</strong></p>
             <p>纳税税率: <strong>{this.state.taxE2}%</strong></p>

@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
 import DocumentTitle from 'react-document-title'
 import './index.scss';
-import iconYearEndBonus from '../../asset/images/icon_yearEndBonus.png'
 
 const indexPage = [
   {
     title: '年终奖计算',
-    path: '/yearEndBonus',
-    icon: iconYearEndBonus
+    path: '/yearEndBonus'
+  },
+  {
+    title: '五险一金工资税后',
+    path: '/fiveInsuranceOneFund'
   }
 ];
 
@@ -35,7 +37,7 @@ export default class Home extends Component {
               indexPage.map((item, index) => {
                 return (
                   <div onClick={this.goPage(item.path)} className='nav' key={index}>
-                    <img src={item.icon} alt={item.title}/>
+                    <div className='icon' />
                     <p>{item.title}</p>
                   </div>
                 )
