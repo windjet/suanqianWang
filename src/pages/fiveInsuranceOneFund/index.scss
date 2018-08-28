@@ -2,7 +2,27 @@
 
 .page-five-insurance-one-fund {
 	width: 100%;
-	.tax-start-point {
-
+	.city-content {
+		margin-bottom: 10px;
+		.city-col {
+			margin: 0 20px;
+		}
+		.city-item {
+			display: inline-block;
+			width: 60px;
+			height: 22px;
+			line-height: 22px;
+			border: 1px solid #eee;
+			border-radius: 4px;
+			font-size: 14px;
+			text-align: center;
+			margin-right: 10px;
+			cursor: pointer;
+			&.current {
+				background-color: $blue;
+				color: #ffffff;
+				border-color: $blue;
+			}
+		}
 	}
 }

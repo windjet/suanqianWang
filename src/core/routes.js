@@ -11,20 +11,20 @@ const routes = [
     component: Home
   },
   {
-    path: '/yearEndBonus',
+    path: '/yearEndBonus/',
     exact: true,
     component: YearEndBonus
   },
-	{
-		path: '/fiveInsuranceOneFund',
-		exact: true,
-		component: FiveInsuranceOneFund
-	},
-	{
-		path: '/fiveInsuranceOneFund/:city',
-		exact: true,
-		component: FiveInsuranceOneFund
-	}
+  {
+    path: '/fiveInsuranceOneFund/',
+    exact: true,
+    component: FiveInsuranceOneFund
+  },
+  {
+    path: '/fiveInsuranceOneFund/:city',
+    exact: true,
+    component: FiveInsuranceOneFund
+  }
 ];
 
 // const extendRoutes = routes.map(({component, ...others}) => {

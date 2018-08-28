@@ -2,6 +2,7 @@
 
 .home-page {
 	.nav-group {
+		padding: 20px 0;
 		.nav {
 			width: 25%;
 			display: inline-block;
@@ -13,12 +14,18 @@
 				width: 36px;
 				height: 36px;
 				border-radius: 50%;
-				background: url("../../asset/images/icon_yearEndBonus.png") no-repeat #eee;
+				background: url("../../asset/images/icon_yearEndBonus.png") no-repeat #eeeeee;
 				background-size: cover;
+				&-yearEndBonus {
+					background-image: url("../../asset/images/icon_yearEndBonus.png");
+				}
+				&-fiveInsurance {
+					background-image: url("../../asset/images/icon_fiveInsurance.png");
+				}
 			}
 			p {
 				text-align: center;
-				line-height: 13px;
+				line-height: 16px;
 				font-size: 13px;
 			}
 		}

@@ -1,0 +1,87 @@
+const formatObjValue = (obj) => {
+  for (let key in obj) {
+    obj[key] = baseFormatPrice(obj[key])
+  }
+  return obj
+};
+
+export const baseFormatPrice = (value) => {
+  return (parseInt(value * 1e2, 10) / 1e2).toString()
+};
+
+export const getgerensuodeTax = (monthIncome) => {
+  if (monthIncome < 0) {
+    return {
+      taxE2: 0,
+      deduct: 0
+    }
+  }
+  else if (monthIncome < 1500) {
+    return {
+      taxE2: 3,
+      deduct: 0,
+    }
+  } else if (monthIncome <= 4500) {
+    return {
+      taxE2: 10,
+      deduct: 105,
+    }
+  } else if (monthIncome <= 9000) {
+    return {
+      taxE2: 20,
+      deduct: 555,
+    }
+  } else if (monthIncome <= 35000) {
+    return {
+      taxE2: 25,
+      deduct: 1005,
+    }
+  } else if (monthIncome <= 55000) {
+    return {
+      taxE2: 30,
+      deduct: 2755,
+    }
+  } else if (monthIncome <= 80000) {
+    return {
+      taxE2: 35,
+      deduct: 5055,
+    }
+  }
+  return {
+    taxE2: 45,
+    deduct: 13505,
+  }
+};
+
+
+export const getFiveInsuranceOneFund = (preTax, allGene) => {
+  const startTaxPoint = 3500;
+  const FIValue = {};
+  for (let key in allGene) {
+    const {min, max} = allGene[key];
+    const _preTax = preTax < min ? min : (preTax > max ? max : preTax);
+    FIValue[key] = _preTax * allGene[key].c / 1e2
+  }
+  //五险
+  const totalFIValue = FIValue.endowment + FIValue.medical + FIValue.unemployment + FIValue.employmentInjury + FIValue.maternity;
+  //公积金
+  const housing = FIValue.housing;
+  //应纳税所得额 = 税前收入 - 五险 - 公积金 - 个税起征点
+  const yingnashuisuodee = preTax - totalFIValue - housing - startTaxPoint;
+  //个人所得税税率，速算扣除数
+  const {taxE2, deduct} = getgerensuodeTax(yingnashuisuodee);
+  //个人所得税
+  const personalIncomeTax = preTax < startTaxPoint ? 0 : yingnashuisuodee * taxE2 / 1E2 - deduct;
+  //税后收入 = 税前收入 - 五险 - 公积金 - 个人所得税
+  const afterTax = preTax - totalFIValue - housing - personalIncomeTax;
+  return formatObjValue({
+    endowment: FIValue.endowment,
+    medical: FIValue.medical,
+    unemployment: FIValue.unemployment,
+    employmentInjury: FIValue.employmentInjury,
+    maternity: FIValue.maternity,
+    housing,
+    personalIncomeTax,
+    afterTax
+  })
+};
