@@ -112,7 +112,7 @@ export default class FiveInsuranceOneFund extends Component {
             <p>养老保险: <strong>{this.state.endowment}</strong></p>
             <p>医疗保险: <strong>{this.state.medical}</strong></p>
             <p>失业保险: <strong>{this.state.unemployment}</strong></p>
-            <p>工商保险: <strong>{this.state.employmentInjury}</strong></p>
+            <p>工伤保险: <strong>{this.state.employmentInjury}</strong></p>
             <p>生育保险: <strong>{this.state.maternity}</strong></p>
             <p>住房公积金: <strong>{this.state.housing}</strong></p>
             <p>个人所得税：<strong>{this.state.personalIncomeTax}</strong></p>
