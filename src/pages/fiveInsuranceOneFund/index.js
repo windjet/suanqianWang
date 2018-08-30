@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component, Fragment, createRef} from 'react';
 import DocumentTitle from 'react-document-title'
 import cn from "classnames";
 import {fiofConfig} from '../../core/configData';
@@ -16,6 +16,12 @@ export default class FiveInsuranceOneFund extends Component {
     };
   }
 
+  inputRef = createRef();
+
+  componentDidMount () {
+    this.state.allGene && this.inputRef.current.focus();
+  }
+
 
   getCurrentCity = () => {
     return this.props.match && this.props.match.params && this.props.match.params.city
@@ -23,9 +29,16 @@ export default class FiveInsuranceOneFund extends Component {
 
 
   handleChange = (e) => {
-    this.setState({
-      preTax: e.target.value
-    })
+    if (e.target.value) {
+      this.setState({
+        preTax: parseInt(e.target.value, 10)
+      })
+    } else {
+      this.setState({
+        preTax: '',
+        afterTax: ''
+      })
+    }
   };
 
 
@@ -90,7 +103,7 @@ export default class FiveInsuranceOneFund extends Component {
               <h2>{title}</h2>
               <div className='form-col current'>
                 <label>税前收入</label>
-                <input type="number" value={this.state.preTax} onChange={this.handleChange} placeholder='请先输入税前工资'/>
+                <div className='input'><input ref={this.inputRef}  maxLength={9} type="tel" value={this.state.preTax} onChange={this.handleChange} placeholder='请先输入税前工资'/></div>
                 <div className='unit'>元</div>
               </div>
               <div className='actions'>
@@ -101,7 +114,8 @@ export default class FiveInsuranceOneFund extends Component {
               </div>
               <div className='form-col'>
                 <label>税后收入</label>
-                <input type='number' disabled value={this.state.preTax && this.state.afterTax} placeholder=''/>
+                <div className='input'><input type='tel' disabled value={this.state.preTax && this.state.afterTax} placeholder=''/></div>
+                <div className='unit'>元</div>
               </div>
             </Fragment>
             }

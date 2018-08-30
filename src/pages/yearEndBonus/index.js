@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, createRef} from 'react';
 import './index.scss';
 import cn from 'classnames';
 import DocumentTitle from 'react-document-title'
@@ -15,6 +15,12 @@ export default class YearEndBonus extends Component {
       deduct: '--',
       payTax: '--',
     };
+  }
+
+  inputRef = createRef();
+
+  componentDidMount() {
+    this.inputRef.current.focus();
   }
 
   getnianzhongjiangTax = (monthIncome) => {
@@ -72,9 +78,16 @@ export default class YearEndBonus extends Component {
   };
 
   handleChange = (e) => {
-    this.setState({
-      preTax: e.target.value
-    })
+    if (e.target.value) {
+      this.setState({
+        preTax: parseInt(e.target.value, 10)
+      })
+    } else {
+      this.setState({
+        preTax: '',
+        afterTax: ''
+      })
+    }
   };
 
 
@@ -86,16 +99,22 @@ export default class YearEndBonus extends Component {
             <h2>年终奖税后计算器</h2>
             <div className='form-col current'>
               <label>税前收入</label>
-              <input type="number" value={this.state.preTax} onChange={this.handleChange} placeholder='请先输入年终奖金额'/>
+              <div className='input'>
+                <input ref={this.inputRef} type="tel" maxLength={9} value={this.state.preTax} onChange={this.handleChange} placeholder='请先输入年终奖金额'/>
+              </div>
+              <div className='unit'>元</div>
             </div>
             <div className='actions'>
-              <button className={cn('submit-btn', !this.state.preTax && 'disabled')}
-                      onClick={() => this.nianzhongjiangFormula(this.state.preTax)}>计算
+              <button className={cn('submit-btn', !this.state.preTax && 'disabled')} onClick={() => this.nianzhongjiangFormula(this.state.preTax)}>计算
               </button>
             </div>
             <div className='form-col'>
               <label>税后收入</label>
-              <input type='number' disabled value={this.state.preTax && this.state.afterTax} placeholder=''/>
+              <div className='input'>
+                <input type='tel' disabled value={this.state.preTax && this.state.afterTax} placeholder=''/>
+              </div>
+              <div className='unit'>元</div>
+
             </div>
           </div>
           {this.state.preTax && this.state.afterTax &&

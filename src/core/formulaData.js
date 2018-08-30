@@ -57,7 +57,7 @@ const calculateTargetValue = (preTax, limit, ...args) => {
   const {min, max} = limit;
   const _preTax = preTax < min ? min : (preTax > max ? max : preTax);
   const obj = {};
-  args.map((item) => {
+  args.forEach((item) => {
     for (let key in item) {
       obj[key] = item[key].c / 1e2 * _preTax;
     }
