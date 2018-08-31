@@ -12,6 +12,7 @@ export default class FiveInsuranceOneFund extends Component {
     this.state = {
       preTax: '',
       afterTax: '',
+      taxType: 1,
       allGene: fiofConfig.filter((item) => item.city === this.getCurrentCity())[0]
     };
   }
@@ -52,7 +53,7 @@ export default class FiveInsuranceOneFund extends Component {
       housing,
       personalIncomeTax,
       afterTax
-    } = getFiveInsuranceOneFund(this.state.preTax, this.state.allGene);
+    } = getFiveInsuranceOneFund(this.state.preTax, this.state.allGene, this.state.taxType);
     this.setState({
       endowment,
       medical,
@@ -90,17 +91,33 @@ export default class FiveInsuranceOneFund extends Component {
     )
   };
 
+  handleSelectTaxType = (type) => {
+    return () => {
+      this.setState({
+        taxType: type
+      })
+    }
+  };
+
   render() {
     const city = (this.state.allGene && this.state.allGene.title) || '';
     const title = `${city}五险一金、税后工资计算器`;
     return (
-      <DocumentTitle title={`2018 ${title} - 算钱网`}>
+      <DocumentTitle title={`2019 ${title} - 算钱网`}>
         <div className='page-five-insurance-one-fund'>
           <div className='content'>
             {this.renderSelectCity()}
             {city &&
             <Fragment>
               <h2>{title}</h2>
+              <div className='form-col'>
+                <label>个税版本</label>
+                <div className='radio'>
+                  <div onClick={this.handleSelectTaxType(1)} className={cn('radio-item', this.state.taxType === 1 && 'current')}><p>3500起征点<span>现在</span></p></div>
+                  <div onClick={this.handleSelectTaxType(2)} className={cn('radio-item', this.state.taxType === 2 && 'current')}><p>5000起征点<span>2018/10/1实施</span></p></div>
+                  <div onClick={this.handleSelectTaxType(3)} className={cn('radio-item', this.state.taxType === 3 && 'current')}><p>5000起征点<br />新个税法<span>2019/1/1实施</span></p></div>
+                </div>
+              </div>
               <div className='form-col current'>
                 <label>税前收入</label>
                 <div className='input'><input ref={this.inputRef}  maxLength={9} type="tel" value={this.state.preTax} onChange={this.handleChange} placeholder='请先输入税前工资'/></div>

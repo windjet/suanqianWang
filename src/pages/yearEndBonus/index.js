@@ -2,6 +2,7 @@ import React, {Component, createRef} from 'react';
 import './index.scss';
 import cn from 'classnames';
 import DocumentTitle from 'react-document-title'
+import {getgerensuodeTax, getgerensuodeTax2019} from '../../core/formulaData';
 
 
 export default class YearEndBonus extends Component {
@@ -14,6 +15,7 @@ export default class YearEndBonus extends Component {
       taxE2: '--',
       deduct: '--',
       payTax: '--',
+      taxType: 1
     };
   }
 
@@ -23,48 +25,12 @@ export default class YearEndBonus extends Component {
     this.inputRef.current.focus();
   }
 
-  getnianzhongjiangTax = (monthIncome) => {
-    if (monthIncome < 1500) {
-      return {
-        taxE2: 3,
-        deduct: 0,
-      }
-    } else if (monthIncome <= 4500) {
-      return {
-        taxE2: 10,
-        deduct: 105,
-      }
-    } else if (monthIncome <= 9000) {
-      return {
-        taxE2: 20,
-        deduct: 555,
-      }
-    } else if (monthIncome <= 35000) {
-      return {
-        taxE2: 25,
-        deduct: 1005,
-      }
-    } else if (monthIncome <= 55000) {
-      return {
-        taxE2: 30,
-        deduct: 2755,
-      }
-    } else if (monthIncome <= 80000) {
-      return {
-        taxE2: 35,
-        deduct: 5055,
-      }
-    }
-    return {
-      taxE2: 45,
-      deduct: 13505,
-    }
-  };
 
   nianzhongjiangFormula = (preTax) => {
     if (preTax) {
+      const taxFormula = this.state.taxType === 1 ? getgerensuodeTax : getgerensuodeTax2019;
       const monthIncome = preTax / 12;
-      const {taxE2, deduct} = this.getnianzhongjiangTax(monthIncome);
+      const {taxE2, deduct} = taxFormula(monthIncome);
       const payTax = preTax * taxE2 / 1E2 - deduct;
       const afterTax = preTax - payTax;
       this.setState({
@@ -90,6 +56,13 @@ export default class YearEndBonus extends Component {
     }
   };
 
+  handleSelectTaxType = (type) => {
+    return () => {
+      this.setState({
+        taxType: type
+      })
+    }
+  };
 
   render() {
     return (
@@ -97,6 +70,13 @@ export default class YearEndBonus extends Component {
         <div className='page-year-end-bouns'>
           <div className='content'>
             <h2>年终奖税后计算器</h2>
+            <div className='form-col'>
+              <label>个税版本</label>
+              <div className='radio'>
+                <div onClick={this.handleSelectTaxType(1)} className={cn('radio-item', this.state.taxType === 1 && 'current')}><p>2018年</p></div>
+                <div onClick={this.handleSelectTaxType(2)} className={cn('radio-item', this.state.taxType === 2 && 'current')}><p>2019年<span>1月1日实施</span></p></div>
+              </div>
+            </div>
             <div className='form-col current'>
               <label>税前收入</label>
               <div className='input'>

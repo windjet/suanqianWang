@@ -53,6 +53,50 @@ export const getgerensuodeTax = (monthIncome) => {
   }
 };
 
+export const getgerensuodeTax2019 = (monthIncome) => {
+  if (monthIncome < 0) {
+    return {
+      taxE2: 0,
+      deduct: 0
+    }
+  }
+  else if (monthIncome <= 3000) {
+    return {
+      taxE2: 3,
+      deduct: 0,
+    }
+  } else if (monthIncome <= 12000) {
+    return {
+      taxE2: 10,
+      deduct: 210,
+    }
+  } else if (monthIncome <= 25000) {
+    return {
+      taxE2: 20,
+      deduct: 1410,
+    }
+  } else if (monthIncome <= 35000) {
+    return {
+      taxE2: 25,
+      deduct: 2660,
+    }
+  } else if (monthIncome <= 55000) {
+    return {
+      taxE2: 30,
+      deduct: 4410,
+    }
+  } else if (monthIncome <= 80000) {
+    return {
+      taxE2: 35,
+      deduct: 7160,
+    }
+  }
+  return {
+    taxE2: 45,
+    deduct: 15160,
+  }
+};
+
 const calculateTargetValue = (preTax, limit, ...args) => {
   const {min, max} = limit;
   const _preTax = preTax < min ? min : (preTax > max ? max : preTax);
@@ -65,8 +109,8 @@ const calculateTargetValue = (preTax, limit, ...args) => {
   return obj;
 };
 
-export const getFiveInsuranceOneFund = (preTax, allGene) => {
-  const startTaxPoint = 3500;
+export const getFiveInsuranceOneFund = (preTax, allGene, taxType) => {
+  const startTaxPoint = taxType === 1 ? 3500 : 5000;
   let {
     fiveInsuranceLimit,
     housingLimit,
@@ -86,8 +130,10 @@ export const getFiveInsuranceOneFund = (preTax, allGene) => {
 
   //应纳税所得额 = 税前收入 - 五险 - 公积金 - 个税起征点
   const yingnashuisuodee = preTax - totalFIValue - housingObj.housing - startTaxPoint;
+  //console.log(preTax - totalFIValue - housingObj.housing);
   //个人所得税税率，速算扣除数
-  const {taxE2, deduct} = getgerensuodeTax(yingnashuisuodee);
+  const taxFormula = taxType === 3 ? getgerensuodeTax2019 : getgerensuodeTax; // taxType === 3:新个税
+  const {taxE2, deduct} = taxFormula(yingnashuisuodee);
   //个人所得税
   const personalIncomeTax = preTax < startTaxPoint ? 0 : yingnashuisuodee * taxE2 / 1E2 - deduct;
   //税后收入 = 税前收入 - 五险 - 公积金 - 个人所得税
