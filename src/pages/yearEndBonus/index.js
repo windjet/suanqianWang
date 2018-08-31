@@ -73,8 +73,8 @@ export default class YearEndBonus extends Component {
             <div className='form-col'>
               <label>个税版本</label>
               <div className='radio'>
-                <div onClick={this.handleSelectTaxType(1)} className={cn('radio-item', this.state.taxType === 1 && 'current')}><p>2018年</p></div>
-                <div onClick={this.handleSelectTaxType(2)} className={cn('radio-item', this.state.taxType === 2 && 'current')}><p>2019年<span>1月1日实施</span></p></div>
+                <div onClick={this.handleSelectTaxType(1)} className={cn('radio-item', this.state.taxType === 1 && 'current')}><p>现行个税</p></div>
+                <div onClick={this.handleSelectTaxType(2)} className={cn('radio-item', this.state.taxType === 2 && 'current')}><p>新个税<span>2018年10月1日实施</span></p></div>
               </div>
             </div>
             <div className='form-col current'>

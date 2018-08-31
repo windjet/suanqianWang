@@ -132,7 +132,7 @@ export const getFiveInsuranceOneFund = (preTax, allGene, taxType) => {
   const yingnashuisuodee = preTax - totalFIValue - housingObj.housing - startTaxPoint;
   //console.log(preTax - totalFIValue - housingObj.housing);
   //个人所得税税率，速算扣除数
-  const taxFormula = taxType === 3 ? getgerensuodeTax2019 : getgerensuodeTax; // taxType === 3:新个税
+  const taxFormula = taxType === 1 ? getgerensuodeTax : getgerensuodeTax2019;
   const {taxE2, deduct} = taxFormula(yingnashuisuodee);
   //个人所得税
   const personalIncomeTax = preTax < startTaxPoint ? 0 : yingnashuisuodee * taxE2 / 1E2 - deduct;

@@ -114,8 +114,7 @@ export default class FiveInsuranceOneFund extends Component {
                 <label>个税版本</label>
                 <div className='radio'>
                   <div onClick={this.handleSelectTaxType(1)} className={cn('radio-item', this.state.taxType === 1 && 'current')}><p>3500起征点<span>现在</span></p></div>
-                  <div onClick={this.handleSelectTaxType(2)} className={cn('radio-item', this.state.taxType === 2 && 'current')}><p>5000起征点<span>2018/10/1实施</span></p></div>
-                  <div onClick={this.handleSelectTaxType(3)} className={cn('radio-item', this.state.taxType === 3 && 'current')}><p>5000起征点<br />新个税法<span>2019/1/1实施</span></p></div>
+                  <div onClick={this.handleSelectTaxType(2)} className={cn('radio-item', this.state.taxType === 2 && 'current')}><p>5000起征点,<br />新税率级距<span>2018/10/1实施</span></p></div>
                 </div>
               </div>
               <div className='form-col current'>
