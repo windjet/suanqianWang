@@ -12,7 +12,7 @@ const server = express();
 server.use(compression());
 server
   .disable('x-powered-by')
-  .use(express.static('public'))  //todo process.env.RAZZLE_PUBLIC_DIR打包的是本地的路徑
+  .use(express.static(__dirname + '/public'))  //todo process.env.RAZZLE_PUBLIC_DIR打包的是本地的路徑
   .get('/*', (req, res) => {
     const context = {};
     const markup = renderToString(
