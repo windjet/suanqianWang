@@ -12,7 +12,7 @@ export default class FiveInsuranceOneFund extends Component {
     this.state = {
       preTax: '',
       afterTax: '',
-      taxType: 1,
+      taxType: 2,
       allGene: fiofConfig.filter((item) => item.city === this.getCurrentCity())[0]
     };
   }
@@ -113,7 +113,7 @@ export default class FiveInsuranceOneFund extends Component {
               <div className='form-col'>
                 <label>个税版本</label>
                 <div className='radio'>
-                  <div onClick={this.handleSelectTaxType(1)} className={cn('radio-item', this.state.taxType === 1 && 'current')}><p>3500起征点<span>现在</span></p></div>
+                  <div onClick={this.handleSelectTaxType(1)} className={cn('radio-item', this.state.taxType === 1 && 'current')}><p>3500起征点<span>老税率</span></p></div>
                   <div onClick={this.handleSelectTaxType(2)} className={cn('radio-item', this.state.taxType === 2 && 'current')}><p>5000起征点,<br />新税率级距<span>2018/10/1实施</span></p></div>
                 </div>
               </div>

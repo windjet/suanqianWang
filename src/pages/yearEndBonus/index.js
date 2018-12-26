@@ -15,7 +15,7 @@ export default class YearEndBonus extends Component {
       taxE2: '--',
       deduct: '--',
       payTax: '--',
-      taxType: 1
+      taxType: 2
     };
   }
 
@@ -73,7 +73,7 @@ export default class YearEndBonus extends Component {
             <div className='form-col'>
               <label>个税版本</label>
               <div className='radio'>
-                <div onClick={this.handleSelectTaxType(1)} className={cn('radio-item', this.state.taxType === 1 && 'current')}><p>现行个税</p></div>
+                <div onClick={this.handleSelectTaxType(1)} className={cn('radio-item', this.state.taxType === 1 && 'current')}><p>老个税</p></div>
                 <div onClick={this.handleSelectTaxType(2)} className={cn('radio-item', this.state.taxType === 2 && 'current')}><p>新个税<span>2018年10月1日实施</span></p></div>
               </div>
             </div>
