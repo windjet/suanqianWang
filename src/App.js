@@ -10,7 +10,6 @@ import {Route, Redirect} from 'react-router-dom'
 
 const App = () => (
   <Fragment>
-    <Head />
     <Switch>
       {
         routes.map((route, i) => (
@@ -22,5 +21,5 @@ const App = () => (
     </Switch>
   </Fragment>
 );
-
+//<Head />
 export default App;

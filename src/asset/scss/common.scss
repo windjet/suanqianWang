@@ -3,11 +3,21 @@
 @import "./_variable.scss";
 
 .content {
-	padding: 30px 0;
+	padding: 10px 0 50px;
 	h2 {
 		font-size: 14px;
 		color: #444444;
-		margin: 0 20px 10px;
+		margin: 20px 20px 10px;
+	}
+	.col-tip {
+		font-size: 12px;
+		margin: -8px 20px 10px;
+		color: #666666;
+	}
+	.flex-row {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 	}
 	.form-col {
 		margin: 0 20px 10px;
@@ -60,6 +70,14 @@
 					font-weight: bold;
 				}
 			}
+			p {
+				display: block;
+				width: 100%;
+				height: 55px;
+				line-height: 55px;
+				text-align: left;
+				font-size: 20px;
+			}
 		}
 		.radio {
 			height: 100%;
@@ -94,6 +112,57 @@
 			}
 		}
 
+	}
+	.form-action-col {
+		margin: 0 20px 10px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		&.current {
+			.icon {
+				border: 0;
+				background-color: $blue;
+				color: #ffffff;
+				font-size: 22px;
+			}
+			.form-action-content {
+				border-color: $blue;
+				.label {
+					color: $blue
+				}
+			}
+		}
+		.icon {
+			flex-shrink: 0;
+			width: 30px;
+			height: 30px;
+			border: 1px solid #d6d6d6;
+			box-sizing: border-box;
+			color: transparent;
+			text-align: center;
+			line-height: 30px;
+			&.radius {
+				border-radius: 50%;
+			}
+			&.disable {
+				background: #eee;
+			}
+		}
+		.form-action-content {
+			margin-left: 15px;
+			flex: 1;
+			padding: 15px 10px;
+			border-radius: 4px;
+			border: 1px solid #d6d6d6;
+			.label {
+				width: 80px;
+				line-height: 18px;
+				font-size: 14px;
+				color: #666666;
+				text-align: center;
+			}
+		}
 	}
 	.actions {
 		width: 100%;

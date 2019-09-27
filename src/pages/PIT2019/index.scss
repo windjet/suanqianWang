@@ -1,0 +1,62 @@
+@import "../../asset/scss/_variable.scss";
+
+.page-PIT2019 {
+	width: 100%;
+	.item-type {
+		.item-type-btn {
+			display: inline-block;
+			font-size: 12px;
+			padding: 3px 5px;
+			border-radius: 4px;
+			border: 1px solid #eeeeee;
+			color: #666666;
+			margin-right: 5px;
+			&.current {
+				border-color: $blue;
+				color: $blue;
+			}
+			&.disabled {
+				color: #999999;
+				background: #eeeeee;
+			}
+		}
+	}
+	.kouchu-value {
+		font-size: 16px;
+		text-align: right;
+		margin-top: 10px;
+		strong {
+			text-decoration: underline;
+		}
+	}
+	.tips {
+		color: #999999;
+		font-size: 12px;
+	}
+	.list-wrap {
+		margin: 20px 20px 10px;
+		.list-title {
+			font-size: 18px;
+		}
+		.list-type {
+			span{
+				margin-left: 10px;
+			}
+		}
+		.list {
+			font-size: 16px;
+			color: #666666;
+			line-height: 26px;
+			padding: 0 5px;
+		}
+	}
+	.txtBlack {
+		color: #000000;
+	}
+	.txtBlue {
+		color: $blue;
+	}
+	.txtRed {
+		color: #ff0000
+	}
+}

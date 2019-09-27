@@ -5,6 +5,12 @@ import './index.scss';
 
 const indexPage = [
   {
+    title: '2019',
+    subTitle: '个人所得税',
+    icon: 'PIT2019',
+    path: '/2019PersonalIncomeTax/'
+  },
+  {
     title: '年终奖',
     subTitle: '个税计算',
     icon: 'yearEndBonus',

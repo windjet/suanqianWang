@@ -1,0 +1,19 @@
+.minus-plus-content {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	span {
+		flex-shrink: 0;
+		display: block;
+		width: 24px;
+		height: 24px;
+		line-height: 22px;
+		text-align: center;
+		background-color: #e2e2e2;
+		font-size: 18px;
+	}
+	p {
+		font-size: 14px;
+	}
+}
