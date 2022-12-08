@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "express": "4.16.3",
+    "express": "4.17.3",
     "hoist-non-react-statics": "^3.0.1",
     "razzle": "^2.4.0",
     "react": "16.4.1",
